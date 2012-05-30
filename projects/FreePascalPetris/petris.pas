@@ -12,7 +12,7 @@ uses
 const
 {$IFDEF UNIX}
   FILLER='*';
-  BRICKWALL0='@@@@';
+  BRICKWALL0='....';
   BRICKWALL1='@@@@';
   BRICKWALL2='@@@@';
 {$ENDIF}
@@ -275,7 +275,7 @@ procedure PlayGame;
         begin
           GoToXY(BX+1, BY+z-1);
           for x := 1 to SizeX do
-            Write(_elem[Map[x,z]])
+            Write(_elem[Map[x,z]]);
         end;
         GoToXY(1, 25)
       end;
@@ -352,13 +352,13 @@ procedure PlayGame;
     for i := 1 to SizeY do
     begin
       GoToXY(BX, BY+i-1);
-      Write(' ');
+      Write('.');
       for j := 1 to SizeX do
       begin
         Write(_elem[0]);
         Map[j, i] := 0
       end;
-      Write(' ')
+      Write('.')
     end;
     for j := 0 to SizeX+1 do Map[j, SizeY+1] := 1;
     for i := 0 to SizeY+1 do
@@ -367,7 +367,8 @@ procedure PlayGame;
       Map[SizeX+1, i] := 129
     end;
     GoToXY(BX, BY+SizeY);
-    for j := 1 to SizeX div 2+1 do Write(BRICKWALL0);
+    for j := 1 to SizeX div 2 do Write(BRICKWALL0);
+    Write(BRICKWALL0[1]);Write(BRICKWALL0[2]);
 
     fly := true;
     fuck := false;
@@ -538,7 +539,9 @@ procedure Topprizz;
     w('Ü  ..       . . .   ');
     w('Ü........... ... .. ');
 {$ELSE}
+    TextAttr := 0;
     ClrScr;
+    TextColor(LightGray);
 {$ENDIF}
     for i:= 1 to 25 do
     begin
