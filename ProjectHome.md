@@ -1,0 +1,1 @@
+The Petris game originally written for textual console mode in TurboPascal. Ported to FreePascal under GNU/Linux, Microsoft Windows, and other FreePascal platforms.
